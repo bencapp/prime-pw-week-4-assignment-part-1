@@ -112,10 +112,39 @@ function sumAll(array) {
 }
 let sumArray = [2, 4, 6, 9, 10];
 console.log(`The sum of ${sumArray} is: ${sumAll(sumArray)}`);
+
 // 10. Function to return a new array of all positive (greater than zero)
 //     numbers contained in an input array. If there are no positive numbers
 //     return an empty array. Note: The input array should not change.
+function findPositive(array) {
+  let newArray = [];
+  for (let item of array) {
+    if (item > 0) {
+      newArray.push(item);
+    }
+  }
+  return newArray;
+}
+let testArray = [-2, 4, 9, 0, -13, "purple", false];
+console.log(findPositive(testArray));
+// Note: I discovered through this test that the 'false' value for a boolean is considered less than 0, while the 'true' value is considered greater than 0.
+// Is this useful? I am curious how often one would mix data types in the same array.
 
 // 11. Pick a problem from Edabit(https://edabit.com/) or
 //     CodeWars(https://www.codewars.com/). Then describe it
 //     here in a comment, write the function, and test it!
+
+// CEASER CIPHER
+// Description from edabit.com site:
+// Julius Caesar protected his confidential information by encrypting it using a cipher.
+// Caesar's cipher (check Resources tab for more info) shifts each letter by a number of letters.
+// If the shift takes you past the end of the alphabet, just rotate back to the front of the alphabet.
+// In the case of a rotation by 3, w, x, y and z would map to z, a, b and c.
+
+// TODO: Create a function that takes a string s (text to be encrypted) and an integer k (the rotation factor). It should return an encrypted string.
+
+function ceaserCipher(string, rotationFactor) {
+  let newString = "";
+  return newString;
+}
+console.log(ceaserCipher("The quick brown fox jumped over the lazy dog", 5));
