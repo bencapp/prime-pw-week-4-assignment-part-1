@@ -156,12 +156,32 @@ console.log(findPositive(testArray));
 // t -> v
 // z -> b
 // NOTE: The '-' character should not change through the cipher, and character case should be stay the same as it goes through the cipher.
-// I'm going to assume that no number characters should change either.
+// I'm going to assume that no numbers or symbols should change either.
+
+// ASCII resource I used: https://www.asciitable.com/
 
 function ceaserCipher(string, rotationFactor) {
   let newString = "";
   for (let i = 0; i < string.length; i++) {
-    console.log(string.charCodeAt(i));
+    let charCode = string.charCodeAt(i);
+    // first check if character is a lower case letter
+    if (65 <= charCode <= 90) {
+      // check if wrap-around is necessary
+      if (90 - charCode > rotationFactor) {
+        newString += String.fromCharCode(charCode + rotationFactor);
+      } else {
+        newString += String.fromCharCode(charCode + rotationFactor - 90 + 65);
+      }
+    }
+    // check if character is an upper case letter
+    if (97 <= charCode <= 122) {
+      // check if wrap-around is necessary
+      if (122 - charCode > rotationFactor) {
+        newString += String.fromCharCode(charCode + rotationFactor);
+      } else {
+        newString += String.fromCharCode(charCode + rotationFactor - 122 + 97);
+      }
+    }
   }
   return newString;
 }
@@ -171,11 +191,14 @@ const testOne = "The quick brown fox jumped over the lazy dog";
 const testTwo = "The-quick-brown-fox-jumped-over-the-lazy-dog";
 const testThree = "1493abcxyzABCXYZ4938--++,.";
 
+console.log(
+  "expected output: cdefghijklmnopqrstwxyzabCDEFGHIJKLMNOPQRSTWXYZAB"
+);
 console.log(ceaserCipher(testZero, 2));
-console.log(ceaserCipher(testZero, 8));
-console.log(ceaserCipher(testOne, 5));
-console.log(ceaserCipher(testTwo, 5));
-console.log(ceaserCipher(testThree, 5));
-console.log(ceaserCipher(testTwo, 9));
-console.log(ceaserCipher(testTwo, 1));
-console.log(ceaserCipher(testThree, 3));
+// console.log(ceaserCipher(testZero, 8));
+// console.log(ceaserCipher(testOne, 5));
+// console.log(ceaserCipher(testTwo, 5));
+// console.log(ceaserCipher(testThree, 5));
+// console.log(ceaserCipher(testTwo, 9));
+// console.log(ceaserCipher(testTwo, 1));
+// console.log(ceaserCipher(testThree, 3));
