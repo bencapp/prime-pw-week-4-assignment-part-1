@@ -143,8 +143,39 @@ console.log(findPositive(testArray));
 
 // TODO: Create a function that takes a string s (text to be encrypted) and an integer k (the rotation factor). It should return an encrypted string.
 
+// Examples from the website:
+// m -> o
+// i -> k
+// d -> f
+// d -> f
+// l -> n
+// e -> g
+// -    -
+// O -> Q
+// u -> w
+// t -> v
+// z -> b
+// NOTE: The '-' character should not change through the cipher, and character case should be stay the same as it goes through the cipher.
+// I'm going to assume that no number characters should change either.
+
 function ceaserCipher(string, rotationFactor) {
   let newString = "";
+  for (let i = 0; i < string.length; i++) {
+    console.log(string.charCodeAt(i));
+  }
   return newString;
 }
-console.log(ceaserCipher("The quick brown fox jumped over the lazy dog", 5));
+
+const testZero = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const testOne = "The quick brown fox jumped over the lazy dog";
+const testTwo = "The-quick-brown-fox-jumped-over-the-lazy-dog";
+const testThree = "1493abcxyzABCXYZ4938--++,.";
+
+console.log(ceaserCipher(testZero, 2));
+console.log(ceaserCipher(testZero, 8));
+console.log(ceaserCipher(testOne, 5));
+console.log(ceaserCipher(testTwo, 5));
+console.log(ceaserCipher(testThree, 5));
+console.log(ceaserCipher(testTwo, 9));
+console.log(ceaserCipher(testTwo, 1));
+console.log(ceaserCipher(testThree, 3));
