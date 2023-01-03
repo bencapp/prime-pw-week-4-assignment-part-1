@@ -164,41 +164,46 @@ function ceaserCipher(string, rotationFactor) {
   let newString = "";
   for (let i = 0; i < string.length; i++) {
     let charCode = string.charCodeAt(i);
-    // first check if character is a lower case letter
-    if (65 <= charCode <= 90) {
+    // check if character is an lower case letter
+    if (charCode >= 97 && charCode <= 122) {
       // check if wrap-around is necessary
-      if (90 - charCode > rotationFactor) {
+      if (122 - charCode >= rotationFactor) {
         newString += String.fromCharCode(charCode + rotationFactor);
       } else {
-        newString += String.fromCharCode(charCode + rotationFactor - 90 + 65);
+        newString += String.fromCharCode(charCode + rotationFactor - 122 + 96);
       }
     }
-    // check if character is an upper case letter
-    if (97 <= charCode <= 122) {
+    // check if character is a upper case letter
+    else if (charCode >= 65 && charCode <= 90) {
       // check if wrap-around is necessary
-      if (122 - charCode > rotationFactor) {
+      if (90 - charCode >= rotationFactor) {
         newString += String.fromCharCode(charCode + rotationFactor);
       } else {
-        newString += String.fromCharCode(charCode + rotationFactor - 122 + 97);
+        newString += String.fromCharCode(charCode + rotationFactor - 90 + 64);
       }
+    }
+    // if character is not a letter
+    else {
+      newString += String.fromCharCode(charCode);
     }
   }
   return newString;
 }
 
-const testZero = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+// Testing constants and console commmands
+
+const testZero = "wxyzWXYZ";
 const testOne = "The quick brown fox jumped over the lazy dog";
 const testTwo = "The-quick-brown-fox-jumped-over-the-lazy-dog";
-const testThree = "1493abcxyzABCXYZ4938--++,.";
+const testThree = "1493abcxyzABCXYZ4938-/%$#@+,.";
 
-console.log(
-  "expected output: cdefghijklmnopqrstwxyzabCDEFGHIJKLMNOPQRSTWXYZAB"
-);
-console.log(ceaserCipher(testZero, 2));
-// console.log(ceaserCipher(testZero, 8));
-// console.log(ceaserCipher(testOne, 5));
-// console.log(ceaserCipher(testTwo, 5));
-// console.log(ceaserCipher(testThree, 5));
-// console.log(ceaserCipher(testTwo, 9));
-// console.log(ceaserCipher(testTwo, 1));
-// console.log(ceaserCipher(testThree, 3));
+console.log(ceaserCipher(testZero, 3));
+console.log("expected: zabcZABC");
+console.log("Additional tests:");
+console.log(ceaserCipher(testZero, 8));
+console.log(ceaserCipher(testOne, 5));
+console.log(ceaserCipher(testTwo, 5));
+console.log(ceaserCipher(testThree, 5));
+console.log(ceaserCipher(testTwo, 9));
+console.log(ceaserCipher(testTwo, 1));
+console.log(ceaserCipher(testThree, 3));
