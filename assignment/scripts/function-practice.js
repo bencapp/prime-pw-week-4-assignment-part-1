@@ -68,11 +68,13 @@ function find(value, array) {
     if (value === array[currentIndex]) {
       valueFound = true;
     }
+    //including console log to check that the while loop is working properly
     console.log(`Current Index: ${currentIndex}, value found = ${valueFound}`);
     currentIndex++;
   }
   return valueFound;
 }
+//testing color array
 let colorArray = [
   "yellow",
   "blue",
@@ -89,17 +91,27 @@ console.log(find("green", colorArray));
 // ----------------------
 // 8. Function to check if a letter is the first letter in a
 //    string. Return true if it is, and false otherwise
-function isFirstLetter(letter, string) {}
+function isFirstLetter(letter, string) {
+  if (letter === string[0]) {
+    return true;
+  } else {
+    return false;
+  }
+}
 console.log("isFirstLetter - should say true", isFirstLetter("a", "apple"));
 console.log("isFirstLetter - should say false", isFirstLetter("z", "apple"));
 
 // 9. Function to return the sum of all numbers in an array
-function sumAll() {
+function sumAll(array) {
   let sum = 0;
+  for (let i in array) {
+    sum += array[i];
+  }
   // TODO: loop to add items
   return sum;
 }
-
+let sumArray = [2, 4, 6, 9, 10];
+console.log(`The sum of ${sumArray} is: ${sumAll(sumArray)}`);
 // 10. Function to return a new array of all positive (greater than zero)
 //     numbers contained in an input array. If there are no positive numbers
 //     return an empty array. Note: The input array should not change.
