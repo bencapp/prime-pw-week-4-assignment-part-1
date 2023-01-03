@@ -53,12 +53,36 @@ console.log("isPositive - should say false:", isPositive(-3));
 
 // 6. Function to return the _last_ item in an array. If the
 //    array is empty, return `undefined`.
-function getLast(array) {}
+function getLast(array) {
+  return array[array.length - 1];
+}
+console.log(getLast(["purple", "green", "yellow", "blue"]));
 
 // 7. Function to find a value in an array. Return true if the
 //    value is found and false otherwise. Use a loop;
 //    DO NOT use Array.includes, Array.indexOf, or Array.find
-function find(value, array) {}
+function find(value, array) {
+  let valueFound = false;
+  let currentIndex = 0;
+  while (!valueFound && currentIndex < array.length) {
+    if (value === array[currentIndex]) {
+      valueFound = true;
+    }
+    console.log(`Current Index: ${currentIndex}, value found = ${valueFound}`);
+    currentIndex++;
+  }
+  return valueFound;
+}
+let colorArray = [
+  "yellow",
+  "blue",
+  "green",
+  "purple",
+  "orange",
+  "violet",
+  "teal",
+];
+console.log(find("green", colorArray));
 
 // ----------------------
 // Stretch Goals
